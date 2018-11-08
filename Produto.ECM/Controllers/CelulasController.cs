@@ -1,25 +1,38 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
 using Produto.ECM.ViewModels;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using RestSharp;
+using System.Configuration;
 
 namespace Produto.ECM.Controllers
 {
     public class CelulasController : Controller
     {
         private readonly ICelulaAppService _celulaApp;
-
+       
         public CelulasController(ICelulaAppService celulaApp)
         {
             _celulaApp = celulaApp;
         }
+
         // GET: Celulas
         public ActionResult Index()
         {
-            var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
-            return View(celulaViewModel);
+            //DESCONTINUANDO A CHAMADA DIRETO DA UI
+            //var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
+            //return View(celulaViewModel);
+            //---
+            //CHAMANDO A CAMADA DE INFRA PELA WEBAPI
+            var client = new RestClient(ConfigurationManager.AppSettings["URL_WEB_API"]);
+            var request = new RestRequest("api/celulas/GetAll", Method.GET);
+            var response = client.Execute<List<CelulaViewModel>>(request).Content;
+            var data = JsonConvert.DeserializeObject<List<CelulaViewModel>>(response);
+
+            return View(data);
         }
 
         // GET: Celulas/Details/5

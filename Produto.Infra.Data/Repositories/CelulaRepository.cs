@@ -5,6 +5,5 @@ namespace Produto.Infra.Data.Repositories
 {
     public class CelulaRepository : RepositoryBase<Celula>, ICelulaRepository
     {
-
     }
 }
