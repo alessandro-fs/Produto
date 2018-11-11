@@ -57,9 +57,15 @@ namespace Produto.ECM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var celulaDomain = Mapper.Map<CelulaViewModel,Celula>(celula);
-                _celulaApp.Add(celulaDomain);
-                return RedirectToAction("Index");
+                //var celulaDomain = Mapper.Map<CelulaViewModel,Celula>(celula);
+                //_celulaApp.Add(celulaDomain);
+                var client = new RestClient(ConfigurationManager.AppSettings["URL_WEB_API"]);
+                var request = new RestRequest("api/celulas/Create", Method.POST);
+                request.AddObject(celula);
+                var response = client.Post(request).Content;
+                var data = JsonConvert.DeserializeObject<bool>(response);
+                if (data)
+                    return RedirectToAction("Index");
             }
             return View(celula);
         }

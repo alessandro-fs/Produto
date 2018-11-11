@@ -20,5 +20,19 @@ namespace Produto.WebAPI.Controllers
             var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
             return celulaViewModel;
         }
+
+        public bool Create(CelulaViewModel celula)
+        {
+            if (ModelState.IsValid)
+            {
+                var celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
+                _celulaApp.Add(celulaDomain);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
