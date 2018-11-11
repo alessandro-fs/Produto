@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
+using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
+using RestSharp;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using RestSharp;
-using System.Configuration;
 
 namespace Produto.ECM.Controllers
 {
@@ -27,12 +27,18 @@ namespace Produto.ECM.Controllers
             //return View(celulaViewModel);
             //---
             //CHAMANDO A CAMADA DE INFRA PELA WEBAPI
-            var client = new RestClient(ConfigurationManager.AppSettings["URL_WEB_API"]);
             var request = new RestRequest("api/celulas/GetAll", Method.GET);
-            var response = client.Execute<List<CelulaViewModel>>(request).Content;
-            var data = JsonConvert.DeserializeObject<List<CelulaViewModel>>(response);
+            var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
 
-            return View(data);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var data = JsonConvert.DeserializeObject<List<CelulaViewModel>>(response.Content);
+                return View(data);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // GET: Celulas/Details/5
@@ -57,26 +63,37 @@ namespace Produto.ECM.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var celulaDomain = Mapper.Map<CelulaViewModel,Celula>(celula);
-                //_celulaApp.Add(celulaDomain);
-                var client = new RestClient(ConfigurationManager.AppSettings["URL_WEB_API"]);
                 var request = new RestRequest("api/celulas/Create", Method.POST);
                 request.AddObject(celula);
-                var response = client.Post(request).Content;
-                var data = JsonConvert.DeserializeObject<bool>(response);
-                if (data)
-                    return RedirectToAction("Index");
+                var response = new ServiceRepository().Client.Post(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var data = JsonConvert.DeserializeObject<bool>(response.Content);
+                    if (data)
+                        return RedirectToAction("Index");
+                }
             }
             return View(celula);
         }
 
         // GET: Celulas/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var _celula = _celulaApp.GetById(id);
-            //TODO: ALESSANDRO - CRIAR UM MÉTODO PARA MAPEAR
-            var _celulaViewModel = Mapper.Map<Celula, CelulaViewModel>(_celula);
-            return View(_celulaViewModel);
+            var request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
+            request.AddObject(id);
+
+            var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var data = JsonConvert.DeserializeObject<CelulaViewModel>(response.Content);
+                return View(data);
+            }
+            else
+            {
+                return View(new CelulaViewModel());
+            }
         }
 
         // POST: Celulas/Edit/5
