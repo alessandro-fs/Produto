@@ -16,10 +16,18 @@ namespace Produto.WebAPI.Controllers
             _celulaApp = celulaApp;
         }
 
-        public IEnumerable<CelulaViewModel> GetAll()
+        [ResponseType(typeof(IEnumerable<CelulaViewModel>))]
+        public IHttpActionResult GetAll()
         {
             var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
-            return celulaViewModel;
+            if (celulaViewModel == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(celulaViewModel);
+            }
         }
 
         [ResponseType(typeof(CelulaViewModel))]
