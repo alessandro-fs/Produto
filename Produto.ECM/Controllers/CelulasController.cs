@@ -22,43 +22,14 @@ namespace Produto.ECM.Controllers
         // GET: Celulas
         public ActionResult Index()
         {
-            //DESCONTINUANDO A CHAMADA DIRETO DA UI
-            //var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
-            //return View(celulaViewModel);
-            //---
-            //CHAMANDO A CAMADA DE INFRA PELA WEBAPI
-            var request = new RestRequest("api/celulas/GetAll", Method.GET);
-            var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var data = JsonConvert.DeserializeObject<List<CelulaViewModel>>(response.Content);
-                return View(data);
-            }
-            else
-            {
-                return View();
-            }
+            return View(Models.CelulaModel.GetAll());
         }
 
         // GET: Celulas/Details/5
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
-            request.AddObject(id);
-
-            var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var data = JsonConvert.DeserializeObject<CelulaViewModel>(response.Content);
-                return View(data);
-            }
-            else
-            {
-                return View(new CelulaViewModel());
-            }
+            return View(Models.CelulaModel.GetById(id));
         }
 
         // GET: Celulas/Create
