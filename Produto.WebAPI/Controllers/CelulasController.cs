@@ -47,21 +47,93 @@ namespace Produto.WebAPI.Controllers
             }
             else
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
-        public bool Create(CelulaViewModel celula)
+        public IHttpActionResult Create(CelulaViewModel celula)
         {
             if (ModelState.IsValid)
             {
-                var celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
-                _celulaApp.Add(celulaDomain);
-                return true;
+                var _celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
+                if (_celulaDomain == null)
+                {
+                     return NotFound();
+                }
+                else
+                {
+                    _celulaApp.Add(_celulaDomain);
+                    return Ok();
+                }
             }
             else
             {
-                return false;
+                return BadRequest();
+            }
+        }
+
+        [ResponseType(typeof(CelulaViewModel))]
+        public IHttpActionResult Edit(CelulaViewModel celula)
+        {
+            if (ModelState.IsValid)
+            {
+                var _celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
+                if (_celulaDomain == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _celulaApp.Update(_celulaDomain);
+                    return Ok();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [ResponseType(typeof(CelulaViewModel))]
+        public IHttpActionResult DeleteConfirmed(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var _celula = _celulaApp.GetById(id);
+                if (_celula == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _celulaApp.Remove(_celula);
+                    return Ok();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [ResponseType(typeof(CelulaViewModel))]
+        public IHttpActionResult Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var _celula = _celulaApp.GetById(id);
+                if (_celula == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(Mapper.Map<Celula, CelulaViewModel>(_celula));
+                }
+            }
+            else
+            {
+                return BadRequest();
             }
         }
     }
