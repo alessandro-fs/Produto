@@ -2,7 +2,6 @@
 using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
 using RestSharp;
-using System;
 using System.Collections.Generic;
 
 namespace Produto.ECM.Models
@@ -35,14 +34,14 @@ namespace Produto.ECM.Models
         {
             try
             {
-                var request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
-                request.AddObject(id);
+                var _request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
+                _request.AddObject(id);
 
-                var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
+                var _response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(_request);
 
-                if (response.IsSuccessful)
+                if (_response.IsSuccessful)
                 {
-                    return JsonConvert.DeserializeObject<CelulaViewModel>(response.Content);
+                    return JsonConvert.DeserializeObject<CelulaViewModel>(_response.Content);
                 }
                 else
                 {
@@ -52,6 +51,90 @@ namespace Produto.ECM.Models
             catch
             {
                 return null;
+            }
+        }
+
+        public static bool Create(CelulaViewModel celula)
+        {
+            try
+            {
+                var _request = new RestRequest("api/celulas/Create", Method.POST);
+                _request.AddObject(celula);
+                var _response = new ServiceRepository().Client.Post(_request);
+
+                return _response.IsSuccessful;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static CelulaViewModel Edit(int id)
+        {
+            try
+            {
+                var _request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
+                _request.AddObject(id);
+                var _response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(_request);
+
+                if (_response.IsSuccessful)
+                    return JsonConvert.DeserializeObject<CelulaViewModel>(_response.Content);
+                else
+                    return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static bool Edit(CelulaViewModel celula)
+        {
+            try
+            {
+                var _request = new RestRequest("api/celulas/Edit", Method.POST);
+                _request.AddObject(celula);
+                var _response = new ServiceRepository().Client.Post(_request);
+                return _response.IsSuccessful;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static CelulaViewModel Delete(int id)
+        {
+            try
+            {
+                var _request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
+                _request.AddObject(id);
+                var _response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(_request);
+
+                if (_response.IsSuccessful)
+                    return JsonConvert.DeserializeObject<CelulaViewModel>(_response.Content);
+                else
+                    return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static bool DeleteConfirmed(int id)
+        {
+            try
+            {
+                var _request = new RestRequest("api/celulas/DeleteConfirmed/" + id.ToString(), Method.DELETE);
+                _request.AddObject(id);
+                var _response = new ServiceRepository().Client.Delete(_request);
+                return _response.IsSuccessful;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

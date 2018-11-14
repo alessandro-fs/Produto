@@ -43,37 +43,20 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CelulaViewModel celula)
         {
-            if (ModelState.IsValid)
-            {
-                var request = new RestRequest("api/celulas/Create", Method.POST);
-                request.AddObject(celula);
-                var response = new ServiceRepository().Client.Post(request);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(celula);
+            if (ModelState.IsValid && Models.CelulaModel.Create(celula))
+                return RedirectToAction("Index");
+            else
+                return View(celula);
         }
 
         // GET: Celulas/Edit/5
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
-            request.AddObject(id);
-
-            var response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var data = JsonConvert.DeserializeObject<CelulaViewModel>(response.Content);
-                return View(data);
-            }
+            if (ModelState.IsValid)
+                return View(Models.CelulaModel.Edit(id));
             else
-            {
                 return View(new CelulaViewModel());
-            }
         }
 
         // POST: Celulas/Edit/5
@@ -81,46 +64,22 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CelulaViewModel celula)
         {
-            if (ModelState.IsValid)
-            {
-                var _request = new RestRequest("api/celulas/Edit", Method.POST);
-                _request.AddObject(celula);
-                var _response = new ServiceRepository().Client.Post(_request);
-                if (_response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(celula);
+            if (ModelState.IsValid && Models.CelulaModel.Edit(celula))
+                return RedirectToAction("Index");
+            else
+                return View(celula);
         }
 
         // GET: Celulas/Delete/5
         public ActionResult Delete(int id)
         {
-            //var _celula = _celulaApp.GetById(id);
-            //TODO: ALESSANDRO - CRIAR UM MÉTODO PARA MAPEAR
-            //var _celulaViewModel = Mapper.Map<Celula, CelulaViewModel>(_celula);
-            //return View(_celulaViewModel);
-
             if (ModelState.IsValid)
             {
-                var _request = new RestRequest("api/celulas/GetById/" + id.ToString(), Method.GET);
-                _request.AddObject(id);
-                var _response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(_request);
-
-                if (_response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var _celulaViewModel = JsonConvert.DeserializeObject<CelulaViewModel>(_response.Content);
-                    return View(_celulaViewModel);
-                }
-                else
-                {
-                    return View(new CelulaViewModel());
-                }
+                return View(Models.CelulaModel.Delete(id));
             }
             else
             {
-                return View();
+                return View(new CelulaViewModel());
             }
         }
 
@@ -129,17 +88,10 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var _request = new RestRequest("api/celulas/DeleteConfirmed/" + id.ToString(), Method.DELETE);
-                _request.AddObject(id);
-                var _response2 = new ServiceRepository().Client.Delete(_request);
-                if (_response2.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            return View();
+            if (ModelState.IsValid && Models.CelulaModel.DeleteConfirmed(id))
+                return RedirectToAction("Index");
+            else
+                return View();
         }
     }
 }
