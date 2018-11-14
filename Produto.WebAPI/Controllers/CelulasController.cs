@@ -3,6 +3,7 @@ using Produto.Application.Interface;
 using Produto.Domain.Entities;
 using Produto.WebAPI.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -17,9 +18,9 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(IEnumerable<CelulaViewModel>))]
-        public IHttpActionResult GetAll()
+        public async Task<IHttpActionResult> GetAll()
         {
-            var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
+            var celulaViewModel = await Task.FromResult(Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll()));
             if (celulaViewModel == null)
             {
                 return NotFound();
@@ -31,11 +32,11 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
-        public IHttpActionResult GetById(int id)
+        public async Task<IHttpActionResult> GetById(int id)
         {
             if (ModelState.IsValid)
             {
-                var _celula = _celulaApp.GetById(id);
+                var _celula = await Task.FromResult(_celulaApp.GetById(id));
                 if (_celula == null)
                 {
                     return NotFound();
@@ -51,11 +52,11 @@ namespace Produto.WebAPI.Controllers
             }
         }
 
-        public IHttpActionResult Create(CelulaViewModel celula)
+        public async Task<IHttpActionResult> Create(CelulaViewModel celula)
         {
             if (ModelState.IsValid)
             {
-                var _celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
+                var _celulaDomain = await Task.FromResult(Mapper.Map<CelulaViewModel, Celula>(celula));
                 if (_celulaDomain == null)
                 {
                      return NotFound();
@@ -73,11 +74,11 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
-        public IHttpActionResult Edit(CelulaViewModel celula)
+        public async Task<IHttpActionResult> Edit(CelulaViewModel celula)
         {
             if (ModelState.IsValid)
             {
-                var _celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
+                var _celulaDomain = await Task.FromResult(Mapper.Map<CelulaViewModel, Celula>(celula));
                 if (_celulaDomain == null)
                 {
                     return NotFound();
@@ -95,11 +96,11 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
-        public IHttpActionResult DeleteConfirmed(int id)
+        public async Task<IHttpActionResult> DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
             {
-                var _celula = _celulaApp.GetById(id);
+                var _celula = await Task.FromResult(_celulaApp.GetById(id));
                 if (_celula == null)
                 {
                     return NotFound();
@@ -117,11 +118,11 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
-        public IHttpActionResult Delete(int id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
             if (ModelState.IsValid)
             {
-                var _celula = _celulaApp.GetById(id);
+                var _celula = await Task.FromResult(_celulaApp.GetById(id));
                 if (_celula == null)
                 {
                     return NotFound();
