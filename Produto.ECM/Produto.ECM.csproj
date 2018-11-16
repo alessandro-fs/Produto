@@ -186,6 +186,7 @@
     <Compile Include="Controllers\CelulasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SetoresController.cs" />
+    <Compile Include="Extensions\NotificationExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +248,7 @@
     <Content Include="Views\Setores\Details.cshtml" />
     <Content Include="Views\Setores\Create.cshtml" />
     <Content Include="Views\Setores\Edit.cshtml" />
+    <Content Include="Views\Shared\_PartialNotifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

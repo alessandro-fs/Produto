@@ -5,7 +5,8 @@
 }
 
 <h2>Index</h2>
-
+<!--NOTIFICATION-->
+@Html.Partial("_PartialNotifications")
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -20,20 +21,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CelulaId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CelulaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CelulaId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CelulaId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CelulaId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CelulaId })
+            </td>
+        </tr>
+    }
 
 </table>

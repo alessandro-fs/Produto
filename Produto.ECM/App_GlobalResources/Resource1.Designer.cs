@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Atenção!.
+        /// </summary>
+        internal static string Atencao {
+            get {
+                return ResourceManager.GetString("Atencao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a E-mail.
         /// </summary>
         internal static string Email {
@@ -75,6 +84,60 @@ namespace Resources {
         internal static string EmailInvalido {
             get {
                 return ResourceManager.GetString("EmailInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Erro!.
+        /// </summary>
+        internal static string Erro {
+            get {
+                return ResourceManager.GetString("Erro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Falha na operação!.
+        /// </summary>
+        internal static string FalhaOperacao {
+            get {
+                return ResourceManager.GetString("FalhaOperacao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Há {0} alertas:.
+        /// </summary>
+        internal static string ListaAtencao {
+            get {
+                return ResourceManager.GetString("ListaAtencao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Há {0} erros:.
+        /// </summary>
+        internal static string ListaErro {
+            get {
+                return ResourceManager.GetString("ListaErro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Há {0} notificações:.
+        /// </summary>
+        internal static string ListaInfo {
+            get {
+                return ResourceManager.GetString("ListaInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Há {0} notificações de sucesso:.
+        /// </summary>
+        internal static string ListaSucesso {
+            get {
+                return ResourceManager.GetString("ListaSucesso", resourceCulture);
             }
         }
         
@@ -102,6 +165,42 @@ namespace Resources {
         internal static string Nome {
             get {
                 return ResourceManager.GetString("Nome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Registro alterado!.
+        /// </summary>
+        internal static string RegistroAlterado {
+            get {
+                return ResourceManager.GetString("RegistroAlterado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Registro excluído!.
+        /// </summary>
+        internal static string RegistroExcluido {
+            get {
+                return ResourceManager.GetString("RegistroExcluido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Registro incluído!.
+        /// </summary>
+        internal static string RegistroIncluido {
+            get {
+                return ResourceManager.GetString("RegistroIncluido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Sucesso!.
+        /// </summary>
+        internal static string Sucesso {
+            get {
+                return ResourceManager.GetString("Sucesso", resourceCulture);
             }
         }
         

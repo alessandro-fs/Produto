@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
+using Produto.ECM.Extensions;
 using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
 using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -43,10 +45,25 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CelulaViewModel celula)
         {
-            if (ModelState.IsValid && Models.CelulaModel.Create(celula))
+            if (!ModelState.IsValid) return View();
+
+            try
+            {
+                if (Models.CelulaModel.Create(celula))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroIncluido, NotificationType.SUCCESS);
+                }
+                else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
                 return RedirectToAction("Index");
-            else
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
                 return View(celula);
+            }
         }
 
         // GET: Celulas/Edit/5
@@ -64,10 +81,24 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CelulaViewModel celula)
         {
-            if (ModelState.IsValid && Models.CelulaModel.Edit(celula))
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                if (Models.CelulaModel.Edit(celula))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroAlterado, NotificationType.SUCCESS);
+                }
+                else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
                 return RedirectToAction("Index");
-            else
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
                 return View(celula);
+            }
         }
 
         // GET: Celulas/Delete/5
@@ -88,10 +119,24 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid && Models.CelulaModel.DeleteConfirmed(id))
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                if (Models.CelulaModel.DeleteConfirmed(id))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroExcluido, NotificationType.SUCCESS);
+
+                }else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
                 return RedirectToAction("Index");
-            else
-                return View();
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View("Index");
+            }
         }
     }
 }
