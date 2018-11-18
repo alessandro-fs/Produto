@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Ativo.
+        /// </summary>
+        internal static string Ativo {
+            get {
+                return ResourceManager.GetString("Ativo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a E-mail.
         /// </summary>
         internal static string Email {
@@ -160,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Nenhum registro encontrado.
+        /// </summary>
+        internal static string NenhumRegistroEncontrado {
+            get {
+                return ResourceManager.GetString("NenhumRegistroEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a Nome.
         /// </summary>
         internal static string Nome {
@@ -174,6 +192,33 @@ namespace Resources {
         internal static string RegistroAlterado {
             get {
                 return ResourceManager.GetString("RegistroAlterado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a &lt;b&gt;{0}&lt;/b&gt; registro encontrado em &lt;b&gt;{1}&lt;/b&gt; página.
+        /// </summary>
+        internal static string RegistroEncontrado1 {
+            get {
+                return ResourceManager.GetString("RegistroEncontrado1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a &lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; página.
+        /// </summary>
+        internal static string RegistroEncontrado2 {
+            get {
+                return ResourceManager.GetString("RegistroEncontrado2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a &lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; páginas.
+        /// </summary>
+        internal static string RegistroEncontrado3 {
+            get {
+                return ResourceManager.GetString("RegistroEncontrado3", resourceCulture);
             }
         }
         

@@ -120,6 +120,9 @@
   <data name="Atencao" xml:space="preserve">
     <value>Atenção!</value>
   </data>
+  <data name="Ativo" xml:space="preserve">
+    <value>Ativo</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
@@ -150,11 +153,23 @@
   <data name="MinimoCaracteres" xml:space="preserve">
     <value>Mínimo {0} caracteres</value>
   </data>
+  <data name="NenhumRegistroEncontrado" xml:space="preserve">
+    <value>Nenhum registro encontrado</value>
+  </data>
   <data name="Nome" xml:space="preserve">
     <value>Nome</value>
   </data>
   <data name="RegistroAlterado" xml:space="preserve">
     <value>Registro alterado!</value>
+  </data>
+  <data name="RegistroEncontrado1" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registro encontrado em &lt;b&gt;{1}&lt;/b&gt; página</value>
+  </data>
+  <data name="RegistroEncontrado2" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; página</value>
+  </data>
+  <data name="RegistroEncontrado3" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; páginas</value>
   </data>
   <data name="RegistroExcluido" xml:space="preserve">
     <value>Registro excluído!</value>

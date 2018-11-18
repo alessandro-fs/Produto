@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using Newtonsoft.Json;
+﻿using PagedList;
 using Produto.Application.Interface;
-using Produto.Domain.Entities;
 using Produto.ECM.Extensions;
-using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
-using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Produto.ECM.Controllers
@@ -22,9 +19,49 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Celulas
-        public ActionResult Index()
+        public ActionResult Index(string ordenacao, int? pagina)
         {
-            return View(Models.CelulaModel.GetAll());
+            try
+            {
+                IEnumerable<CelulaViewModel> _celulas = Models.CelulaModel.GetAll();
+
+                //ORDENAÇÃO DOS DADOS
+                ordenacao = (String.IsNullOrEmpty(ordenacao) ? "Nome_Asc" : ordenacao);
+                switch (ordenacao)
+                {
+                    case ("Nome_Desc"):
+                        _celulas = _celulas.OrderByDescending(c => c.Nome);
+                        break;
+                    default:
+                        _celulas = _celulas.OrderBy(c => c.Nome);
+                        break;
+
+                }
+                //PAGINAÇÃO            
+                int _tamanhoPagina = UtilExtensions.GetTamanhoPagina();
+                pagina = pagina == null ? 1 : pagina;
+                pagina = pagina < 1 ? 1 : pagina;
+                pagina = _tamanhoPagina >= _celulas.Count() ? 1 : pagina;
+
+                int _numeroPagina = (pagina ?? 1);
+                IPagedList _model = _celulas.ToPagedList(_numeroPagina, _tamanhoPagina);
+                _numeroPagina = _model.PageNumber;
+
+                //VIEWBAGS      
+                ViewBag.OrdemPor = (ordenacao == "Nome_Asc" || String.IsNullOrEmpty(ordenacao) ? "Nome_Desc" : "Nome_Asc");
+                ViewBag.Ordenacao = ordenacao;
+                ViewBag.NomeCorrente = string.Empty;
+                ViewBag.PaginaAtual = _numeroPagina;
+                ViewBag.TotalRegistros = UtilExtensions.GetPageInfo(_celulas.Count(), _model);
+
+                return View(_celulas.ToPagedList(_numeroPagina, _tamanhoPagina));
+
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View();
+            }
         }
 
         // GET: Celulas/Details/5
