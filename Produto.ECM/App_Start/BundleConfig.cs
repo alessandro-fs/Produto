@@ -14,6 +14,7 @@ namespace Produto.ECM
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/respond.js")
                 .Include("~/Scripts/modernizr-*")
+                .Include("~/Scripts/site.js")
                 );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
