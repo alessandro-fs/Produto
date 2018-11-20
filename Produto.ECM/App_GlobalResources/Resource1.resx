@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Alterar" xml:space="preserve">
+    <value>Alterar</value>
+  </data>
   <data name="Atencao" xml:space="preserve">
     <value>Atenção!</value>
   </data>
   <data name="Ativo" xml:space="preserve">
     <value>Ativo</value>
+  </data>
+  <data name="Celula" xml:space="preserve">
+    <value>Celula</value>
+  </data>
+  <data name="Detalhes" xml:space="preserve">
+    <value>Detalhes</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
@@ -158,6 +167,9 @@
   </data>
   <data name="Nome" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="NovoItem" xml:space="preserve">
+    <value>Noto Item</value>
   </data>
   <data name="RegistroAlterado" xml:space="preserve">
     <value>Registro alterado!</value>

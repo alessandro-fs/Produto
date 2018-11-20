@@ -35,6 +35,16 @@
         </div>
     </div>
     <div class="container body-content">
+        <!--SITE MAP-->
+        <br /><br />
+        <h3>@ViewBag.Title</h3>
+        @if (Html.MvcSiteMap().SiteMap.CurrentNode != Html.MvcSiteMap().SiteMap.RootNode)
+        {
+            <div class="breadcrumb" style="display:inline-block;width:100%;">
+                <span class="glyphicon glyphicon-home" aria-hidden="true" style="color:#666666"></span>
+                @Html.MvcSiteMap().SiteMapPath()
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>

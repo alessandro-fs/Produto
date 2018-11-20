@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Alterar.
+        /// </summary>
+        internal static string Alterar {
+            get {
+                return ResourceManager.GetString("Alterar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a Atenção!.
         /// </summary>
         internal static string Atencao {
@@ -75,6 +84,24 @@ namespace Resources {
         internal static string Ativo {
             get {
                 return ResourceManager.GetString("Ativo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Celula.
+        /// </summary>
+        internal static string Celula {
+            get {
+                return ResourceManager.GetString("Celula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Detalhes.
+        /// </summary>
+        internal static string Detalhes {
+            get {
+                return ResourceManager.GetString("Detalhes", resourceCulture);
             }
         }
         
@@ -183,6 +210,15 @@ namespace Resources {
         internal static string Nome {
             get {
                 return ResourceManager.GetString("Nome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Noto Item.
+        /// </summary>
+        internal static string NovoItem {
+            get {
+                return ResourceManager.GetString("NovoItem", resourceCulture);
             }
         }
         
