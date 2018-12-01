@@ -19,8 +19,8 @@ namespace Produto.UnitTest
                 CelulaId = 10
             };
             _mock.Setup(x => x.GetById(_celula.CelulaId)).Returns(_celula);
-
-            Assert.IsTrue(_celula.CelulaId == 10);
+            var _celulaMoc = _mock.Object;
+            Assert.IsTrue(_celula.CelulaId == _celulaMoc.GetById(10).CelulaId);
         }
     }
 }
