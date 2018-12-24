@@ -21,7 +21,7 @@ namespace Produto.WebAPI.Controllers
         [ResponseType(typeof(IEnumerable<SetorViewModel>))]
         public async Task<IHttpActionResult> GetAll()
         {
-            var _response = await Task.FromResult(Mapper.Map<IEnumerable<Setor>, IEnumerable<SetorViewModel>>(_setorApp.GetAll()));
+            var _response = await Task.FromResult(Mapper.Map<IEnumerable<Setor>, IEnumerable<SetorViewModel>>(_setorApp.GetAllAsNoTracking()));
             if (_response == null)
             {
                 return NotFound();

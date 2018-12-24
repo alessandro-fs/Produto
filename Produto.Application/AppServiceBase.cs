@@ -24,6 +24,11 @@ namespace Produto.Application
             return _serviceBase.GetAll();
         }
 
+        public IEnumerable<TEntity> GetAllAsNoTracking()
+        {
+            return _serviceBase.GetAllAsNoTracking();
+        }
+
         public TEntity GetById(int id)
         {
             return _serviceBase.GetById(id);

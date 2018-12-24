@@ -20,7 +20,7 @@ namespace Produto.WebAPI.Controllers
         [ResponseType(typeof(IEnumerable<CelulaViewModel>))]
         public async Task<IHttpActionResult> GetAll()
         {
-            var celulaViewModel = await Task.FromResult(Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll()));
+            var celulaViewModel = await Task.FromResult(Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAllAsNoTracking()));
             if (celulaViewModel == null)
             {
                 return NotFound();

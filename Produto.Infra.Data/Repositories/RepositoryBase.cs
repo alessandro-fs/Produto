@@ -30,6 +30,11 @@ namespace Produto.Infra.Data.Repositories
             return Db.Set<TEntity>().ToList();
         }
 
+        public IEnumerable<TEntity> GetAllAsNoTracking()
+        {
+            return Db.Set<TEntity>().AsNoTracking().ToList();
+        }
+
         public void Update(TEntity obj)
         {
             Db.Entry(obj).State = EntityState.Modified;
