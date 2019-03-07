@@ -117,11 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Alterar" xml:space="preserve">
+    <value>Alterar</value>
+  </data>
+  <data name="Atencao" xml:space="preserve">
+    <value>Atenção!</value>
+  </data>
+  <data name="Ativo" xml:space="preserve">
+    <value>Ativo</value>
+  </data>
+  <data name="Celula" xml:space="preserve">
+    <value>Celula</value>
+  </data>
+  <data name="Detalhes" xml:space="preserve">
+    <value>Detalhes</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
   <data name="EmailInvalido" xml:space="preserve">
     <value>Preencha um E-mail válido</value>
+  </data>
+  <data name="Erro" xml:space="preserve">
+    <value>Erro!</value>
+  </data>
+  <data name="FalhaOperacao" xml:space="preserve">
+    <value>Falha na operação!</value>
+  </data>
+  <data name="ListaAtencao" xml:space="preserve">
+    <value>Há {0} alertas:</value>
+  </data>
+  <data name="ListaErro" xml:space="preserve">
+    <value>Há {0} erros:</value>
+  </data>
+  <data name="ListaInfo" xml:space="preserve">
+    <value>Há {0} notificações:</value>
+  </data>
+  <data name="ListaSucesso" xml:space="preserve">
+    <value>Há {0} notificações de sucesso:</value>
   </data>
   <data name="MaximoCaracteres" xml:space="preserve">
     <value>Máximo {0} caracteres</value>
@@ -129,8 +162,35 @@
   <data name="MinimoCaracteres" xml:space="preserve">
     <value>Mínimo {0} caracteres</value>
   </data>
+  <data name="NenhumRegistroEncontrado" xml:space="preserve">
+    <value>Nenhum registro encontrado</value>
+  </data>
   <data name="Nome" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="NovoItem" xml:space="preserve">
+    <value>Noto Item</value>
+  </data>
+  <data name="RegistroAlterado" xml:space="preserve">
+    <value>Registro alterado!</value>
+  </data>
+  <data name="RegistroEncontrado1" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registro encontrado em &lt;b&gt;{1}&lt;/b&gt; página</value>
+  </data>
+  <data name="RegistroEncontrado2" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; página</value>
+  </data>
+  <data name="RegistroEncontrado3" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; registros encontrados em &lt;b&gt;{1}&lt;/b&gt; páginas</value>
+  </data>
+  <data name="RegistroExcluido" xml:space="preserve">
+    <value>Registro excluído!</value>
+  </data>
+  <data name="RegistroIncluido" xml:space="preserve">
+    <value>Registro incluído!</value>
+  </data>
+  <data name="Sucesso" xml:space="preserve">
+    <value>Sucesso!</value>
   </data>
   <data name="VSEmail" xml:space="preserve">
     <value>Preencha o campo E-mail</value>

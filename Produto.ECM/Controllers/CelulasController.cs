@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿using PagedList;
 using Produto.Application.Interface;
-using Produto.Domain.Entities;
+using Produto.ECM.Extensions;
 using Produto.ECM.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Produto.ECM.Controllers
@@ -10,26 +12,64 @@ namespace Produto.ECM.Controllers
     public class CelulasController : Controller
     {
         private readonly ICelulaAppService _celulaApp;
-
+       
         public CelulasController(ICelulaAppService celulaApp)
         {
             _celulaApp = celulaApp;
         }
+
         // GET: Celulas
-        public ActionResult Index()
+        public ActionResult Index(string ordenacao, int? pagina)
         {
-            var celulaViewModel = Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAll());
-            return View(celulaViewModel);
+            try
+            {
+                IEnumerable<CelulaViewModel> _celulas = Models.CelulaModel.GetAll();
+
+                //ORDENAÇÃO DOS DADOS
+                ordenacao = (String.IsNullOrEmpty(ordenacao) ? "Nome_Asc" : ordenacao);
+                switch (ordenacao)
+                {
+                    case ("Nome_Desc"):
+                        _celulas = _celulas.OrderByDescending(c => c.Nome);
+                        break;
+                    default:
+                        _celulas = _celulas.OrderBy(c => c.Nome);
+                        break;
+
+                }
+                //PAGINAÇÃO            
+                int _tamanhoPagina = UtilExtensions.GetTamanhoPagina();
+                pagina = pagina == null ? 1 : pagina;
+                pagina = pagina < 1 ? 1 : pagina;
+                pagina = _tamanhoPagina >= _celulas.Count() ? 1 : pagina;
+
+                int _numeroPagina = (pagina ?? 1);
+                IPagedList _model = _celulas.ToPagedList(_numeroPagina, _tamanhoPagina);
+                _numeroPagina = _model.PageNumber;
+
+                //VIEWBAGS      
+                ViewBag.OrdemPor = (ordenacao == "Nome_Asc" || String.IsNullOrEmpty(ordenacao) ? "Nome_Desc" : "Nome_Asc");
+                ViewBag.Ordenacao = ordenacao;
+                ViewBag.NomeCorrente = string.Empty;
+                ViewBag.PaginaAtual = _numeroPagina;
+                ViewBag.TotalRegistros = UtilExtensions.GetPageInfo(_celulas.Count(), _model);
+
+                return View(_celulas.ToPagedList(_numeroPagina, _tamanhoPagina));
+
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View();
+            }
         }
 
         // GET: Celulas/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            var _celula = _celulaApp.GetById(id);
-            var _celulaViewModel = Mapper.Map<Celula, CelulaViewModel>(_celula);
-            return View(_celulaViewModel);
+            return View(Models.CelulaModel.GetById(id));
         }
-
 
         // GET: Celulas/Create
         public ActionResult Create()
@@ -42,22 +82,35 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CelulaViewModel celula)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+
+            try
             {
-                var celulaDomain = Mapper.Map<CelulaViewModel,Celula>(celula);
-                _celulaApp.Add(celulaDomain);
+                if (Models.CelulaModel.Create(celula))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroIncluido, NotificationType.SUCCESS);
+                }
+                else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
                 return RedirectToAction("Index");
             }
-            return View(celula);
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View(celula);
+            }
         }
 
         // GET: Celulas/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var _celula = _celulaApp.GetById(id);
-            //TODO: ALESSANDRO - CRIAR UM MÉTODO PARA MAPEAR
-            var _celulaViewModel = Mapper.Map<Celula, CelulaViewModel>(_celula);
-            return View(_celulaViewModel);
+            if (ModelState.IsValid)
+                return View(Models.CelulaModel.Edit(id));
+            else
+                return View(new CelulaViewModel());
         }
 
         // POST: Celulas/Edit/5
@@ -65,22 +118,37 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CelulaViewModel celula)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+            try
             {
-                var celulaDomain = Mapper.Map<CelulaViewModel, Celula>(celula);
-                _celulaApp.Update(celulaDomain);
+                if (Models.CelulaModel.Edit(celula))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroAlterado, NotificationType.SUCCESS);
+                }
+                else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
                 return RedirectToAction("Index");
             }
-            return View(celula);
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View(celula);
+            }
         }
 
         // GET: Celulas/Delete/5
         public ActionResult Delete(int id)
         {
-            var _celula = _celulaApp.GetById(id);
-            //TODO: ALESSANDRO - CRIAR UM MÉTODO PARA MAPEAR
-            var _celulaViewModel = Mapper.Map<Celula, CelulaViewModel>(_celula);
-            return View(_celulaViewModel);
+            if (ModelState.IsValid)
+            {
+                return View(Models.CelulaModel.Delete(id));
+            }
+            else
+            {
+                return View(new CelulaViewModel());
+            }
         }
 
         // POST: Celulas/Delete/5
@@ -88,9 +156,24 @@ namespace Produto.ECM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var _celula = _celulaApp.GetById(id);
-            _celulaApp.Remove(_celula);
-            return RedirectToAction("Index");
+            if (!ModelState.IsValid) return View();
+            try
+            {
+                if (Models.CelulaModel.DeleteConfirmed(id))
+                {
+                    this.AddNotification(@Resources.Resource1.RegistroExcluido, NotificationType.SUCCESS);
+
+                }else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                this.AddNotification(@Resources.Resource1.FalhaOperacao + " - " + ex.Message, NotificationType.ERROR);
+                return View("Index");
+            }
         }
     }
 }

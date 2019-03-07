@@ -23,6 +23,11 @@ namespace Produto.Domain.Services
             return _reprository.GetAll();
         }
 
+        public IEnumerable<TEntity> GetAllAsNoTracking()
+        {
+            return _reprository.GetAllAsNoTracking();
+        }
+
         public TEntity GetById(int id)
         {
             return _reprository.GetById(id);

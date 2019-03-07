@@ -10,6 +10,8 @@ namespace Produto.Domain.Interfaces.Repositories
 
         IEnumerable<TEntity> GetAll();
 
+        IEnumerable<TEntity> GetAllAsNoTracking();
+
         void Update(TEntity obj);
 
         void Remove(TEntity obj);
