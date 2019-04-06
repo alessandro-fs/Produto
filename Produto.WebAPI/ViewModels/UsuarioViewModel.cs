@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Produto.Domain.Entities
+namespace Produto.WebAPI.ViewModels
 {
-    public class Usuario
+    public class UsuarioViewModel
     {
         public int UsuarioId { get; set; }
         public string Login { get; set; }
@@ -11,13 +11,8 @@ namespace Produto.Domain.Entities
         public string Telefone { get; set; }
         public DateTime DataCadastro { get; set; }
         public string UsuarioCadastro { get; set; }
-        public DateTime DataAlteracao { get; set; }
+        public DateTime? DataAlteracao { get; set; }
         public string UsuarioAlteracao { get; set; }
         public bool Ativo { get; set; }
-
-        public bool UsuarioMaster(Usuario usuario)
-        {
-            return usuario.Login == "MASTER" ? true : false;
-        }
     }
 }

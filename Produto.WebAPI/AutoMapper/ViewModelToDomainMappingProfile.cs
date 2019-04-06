@@ -14,7 +14,9 @@ namespace Produto.WebAPI.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<Celula, CelulaViewModel>();
-           // CreateMap<Setor, SetorViewModel>();
+            CreateMap<Setor, SetorViewModel>();
+            CreateMap<Usuario, UsuarioViewModel>();
+
         }
     }
 }
