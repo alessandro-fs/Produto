@@ -40,9 +40,13 @@
     <Compile Include="Repositories\CelulaRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\SetorRepository.cs" />
-    <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BPM\EntityConfig\" />
+    <Folder Include="BPM\Repositories\" />
+    <Folder Include="ECM\EntityConfig\" />
+    <Folder Include="ECM\Repositories\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Produto.Domain\Produto.Domain.csproj">
       <Project>{11babf5e-7e00-4713-84ac-2566149412b8}</Project>

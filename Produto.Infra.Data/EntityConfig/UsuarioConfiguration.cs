@@ -21,10 +21,6 @@ namespace Produto.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(150);
 
-            Property(c => c.Telefone)
-                .IsRequired()
-                .HasMaxLength(15);
-
         }
     }
 }
