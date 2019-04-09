@@ -15,6 +15,8 @@ namespace Produto.WebAPI.AutoMapper
         {
             CreateMap<CelulaViewModel, Celula>();
             CreateMap<SetorViewModel, Setor>();
+            CreateMap<UsuarioViewModel, Usuario>();
+
         }
     }
 }

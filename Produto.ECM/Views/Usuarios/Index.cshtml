@@ -40,6 +40,9 @@
     <table class="table">
         <tr class="header-style">
             <th>
+                @Resources.Resource1.Nome
+            </th>
+            <th>
                 @Resources.Resource1.Login
             </th>
             <th>
@@ -51,6 +54,9 @@
         @foreach (var item in Model)
         {
             <tr class="row-style">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)&nbsp;@Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Login)
                 </td>
