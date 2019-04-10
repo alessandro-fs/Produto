@@ -9,17 +9,33 @@ namespace Produto.Infra.Data.EntityConfig
         {
             HasKey(c => c.UsuarioId);
 
-            Property(c => c.Login)
+            Property(c => c.Nome)
                 .IsRequired()
                 .HasMaxLength(150);
 
-            Property(c => c.Senha)
+            Property(c => c.Sobrenome)
+                .IsRequired()
+                .HasMaxLength(150);
+
+            Property(c => c.Login)
                 .IsRequired()
                 .HasMaxLength(150);
 
             Property(c => c.Email)
                 .IsRequired()
                 .HasMaxLength(150);
+
+            Property(c => c.Telefone)
+                .IsRequired()
+                .HasMaxLength(15);
+
+            Property(c => c.DataCadastro)
+               .HasColumnType("datetime2")
+               .IsOptional();
+
+            Property(c => c.DataAlteracao)
+               .HasColumnType("datetime2")
+               .IsOptional();
 
         }
     }

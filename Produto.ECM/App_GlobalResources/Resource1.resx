@@ -156,6 +156,9 @@
   <data name="ListaSucesso" xml:space="preserve">
     <value>Há {0} notificações de sucesso:</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="MaximoCaracteres" xml:space="preserve">
     <value>Máximo {0} caracteres</value>
   </data>
@@ -197,5 +200,8 @@
   </data>
   <data name="VSNome" xml:space="preserve">
     <value>Preencha o campo Nome</value>
+  </data>
+  <data name="VSTelefone" xml:space="preserve">
+    <value>Preencha o campo Telefone</value>
   </data>
 </root>

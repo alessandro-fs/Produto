@@ -15,6 +15,8 @@ namespace Produto.ECM.AutoMapper
         {
             CreateMap<CelulaViewModel, Celula>();
             CreateMap<SetorViewModel, Setor>();
+            CreateMap<UsuarioViewModel, Usuario>();
+
         }
     }
 }

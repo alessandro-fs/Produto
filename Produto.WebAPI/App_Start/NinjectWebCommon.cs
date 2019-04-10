@@ -47,14 +47,18 @@ namespace Produto.WebAPI.App_Start
             kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
             kernel.Bind<ICelulaAppService>().To<CelulaAppService>();
             kernel.Bind<ISetorAppService>().To<SetorAppService>();
+            kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<ICelulaService>().To<CelulaService>();
             kernel.Bind<ISetorService>().To<SetorService>();
+            kernel.Bind<IUsuarioService>().To<UsuarioService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<ICelulaRepository>().To<CelulaRepository>();
             kernel.Bind<ISetorRepository>().To<SetorRepository>();
+            kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
+
         }
     }
 }
