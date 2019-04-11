@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
+using Produto.WebAPI.Filters;
 using Produto.WebAPI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Produto.WebAPI.Controllers
             _celulaApp = celulaApp;
         }
 
+        [DeflateCompression]
         [ResponseType(typeof(IEnumerable<CelulaViewModel>))]
         public async Task<IHttpActionResult> GetAll()
         {
