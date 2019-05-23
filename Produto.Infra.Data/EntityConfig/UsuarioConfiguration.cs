@@ -20,6 +20,9 @@ namespace Produto.Infra.Data.EntityConfig
             Property(c => c.Login)
                 .IsRequired()
                 .HasMaxLength(150);
+            Property(c => c.Senha)
+                .IsRequired()
+                .HasMaxLength(500);
 
             Property(c => c.Email)
                 .IsRequired()

@@ -15,6 +15,7 @@ namespace Produto.ECM.ViewModels
         [MinLength(2, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MinimoCaracteres")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "VSSobrenome")]
         [Display(Name = "Sobrenome")]
         [MaxLength(150, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MaximoCaracteres")]
         [MinLength(2, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MinimoCaracteres")]
@@ -22,10 +23,16 @@ namespace Produto.ECM.ViewModels
 
         public string Login { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "VSSenha")]
+        [Display(Name = "Senha")]
+        [MinLength(3, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MinimoCaracteres")]
+        [MaxLength(150, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MaximoCaracteres")]
+        public string Senha { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "VSEmail")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "EmailInvalido")]
         //[Display(ResourceType = typeof(Resources.Resource1), Name = "Email")]
         [Display(Name = "Email")]
-        [MaxLength(150, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MaximoCaracteres")]
         [MinLength(2, ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "MinimoCaracteres")]
         public string Email { get; set; }
 

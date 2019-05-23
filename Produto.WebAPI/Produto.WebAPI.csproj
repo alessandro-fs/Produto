@@ -347,6 +347,10 @@
       <Project>{c8e4c0cc-660a-4e6f-bedf-34bfd57ae700}</Project>
       <Name>Produto.Infra.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Produto.Shared\Produto.Shared.csproj">
+      <Project>{53ea2638-3682-4704-a62e-befc7b555be9}</Project>
+      <Name>Produto.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

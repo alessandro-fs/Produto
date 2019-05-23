@@ -192,14 +192,26 @@
   <data name="RegistroIncluido" xml:space="preserve">
     <value>Registro incluído!</value>
   </data>
+  <data name="Senha" xml:space="preserve">
+    <value>Senha</value>
+  </data>
   <data name="Sucesso" xml:space="preserve">
     <value>Sucesso!</value>
+  </data>
+  <data name="Usuario" xml:space="preserve">
+    <value>Usuario</value>
   </data>
   <data name="VSEmail" xml:space="preserve">
     <value>Preencha o campo E-mail</value>
   </data>
   <data name="VSNome" xml:space="preserve">
     <value>Preencha o campo Nome</value>
+  </data>
+  <data name="VSSenha" xml:space="preserve">
+    <value>Preencha o campo Senha</value>
+  </data>
+  <data name="VSSobrenome" xml:space="preserve">
+    <value>Preencha o campo Sobrenome</value>
   </data>
   <data name="VSTelefone" xml:space="preserve">
     <value>Preencha o campo Telefone</value>

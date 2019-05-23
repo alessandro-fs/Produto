@@ -286,11 +286,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Senha.
+        /// </summary>
+        internal static string Senha {
+            get {
+                return ResourceManager.GetString("Senha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a Sucesso!.
         /// </summary>
         internal static string Sucesso {
             get {
                 return ResourceManager.GetString("Sucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Usuario.
+        /// </summary>
+        internal static string Usuario {
+            get {
+                return ResourceManager.GetString("Usuario", resourceCulture);
             }
         }
         
@@ -309,6 +327,24 @@ namespace Resources {
         internal static string VSNome {
             get {
                 return ResourceManager.GetString("VSNome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Preencha o campo Senha.
+        /// </summary>
+        internal static string VSSenha {
+            get {
+                return ResourceManager.GetString("VSSenha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Preencha o campo Sobrenome.
+        /// </summary>
+        internal static string VSSobrenome {
+            get {
+                return ResourceManager.GetString("VSSobrenome", resourceCulture);
             }
         }
         
