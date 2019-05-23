@@ -88,6 +88,7 @@ namespace Produto.WebAPI.Controllers
                 }
                 else
                 {
+                    _usuarioDomain.Senha = Shared.Senha.Encriptar(_usuarioDomain.Senha);
                     _usuarioApp.Update(_usuarioDomain);
                     return Ok();
                 }
