@@ -14,6 +14,11 @@ namespace Produto.Domain.Services
             _usuarioRepository = usuarioRepository;
 
         }
+
+        public Usuario Login(string login, string senha)
+        {
+            return _usuarioRepository.Login(login, senha);
+        }
         //---
         //ORQUESTRA, EXECUTA SERVIÇOS DE ALGUM LUGAR PARA ALGUM LUGAR
     }

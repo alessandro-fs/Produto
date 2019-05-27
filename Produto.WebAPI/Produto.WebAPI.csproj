@@ -234,6 +234,7 @@
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Controllers\CelulasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SetoresController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filters\CompressFilter.cs" />
