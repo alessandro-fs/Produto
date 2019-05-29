@@ -11,13 +11,6 @@ namespace Produto.ECM.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly IUsuarioAppService _usuarioApp;
-
-        public UsuariosController(IUsuarioAppService usuarioApp)
-        {
-            _usuarioApp = usuarioApp;
-        }
-
         // GET: Usuarios
         public ActionResult Index(string ordenacao, int? pagina)
         {

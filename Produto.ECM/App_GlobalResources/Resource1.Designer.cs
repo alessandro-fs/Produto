@@ -322,6 +322,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Pesquisa uma cadeia de caracteres localizada semelhante a Preencha o campo Login.
+        /// </summary>
+        internal static string VSLogin {
+            get {
+                return ResourceManager.GetString("VSLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Pesquisa uma cadeia de caracteres localizada semelhante a Preencha o campo Nome.
         /// </summary>
         internal static string VSNome {

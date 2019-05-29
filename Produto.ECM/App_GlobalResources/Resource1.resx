@@ -204,6 +204,9 @@
   <data name="VSEmail" xml:space="preserve">
     <value>Preencha o campo E-mail</value>
   </data>
+  <data name="VSLogin" xml:space="preserve">
+    <value>Preencha o campo Login</value>
+  </data>
   <data name="VSNome" xml:space="preserve">
     <value>Preencha o campo Nome</value>
   </data>

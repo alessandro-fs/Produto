@@ -11,13 +11,6 @@ namespace Produto.ECM.Controllers
 {
     public class CelulasController : Controller
     {
-        private readonly ICelulaAppService _celulaApp;
-       
-        public CelulasController(ICelulaAppService celulaApp)
-        {
-            _celulaApp = celulaApp;
-        }
-
         // GET: Celulas
         public ActionResult Index(string ordenacao, int? pagina)
         {
