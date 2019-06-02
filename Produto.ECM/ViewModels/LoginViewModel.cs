@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace Produto.ECM.ViewModels
 {
-    public class AuthViewModel
+    public class LoginViewModel
     {
         [Required(ErrorMessageResourceType = typeof(Resources.Resource1), ErrorMessageResourceName = "VSLogin")]
         [Display(Name = "Login")]

@@ -30,8 +30,17 @@
                     <li>@Html.ActionLink("Células", "Index", "Celulas")</li>
                     <li>@Html.ActionLink("Setores", "Index", "Setores")</li>
                     <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-
+                    <li>
+                        <labeL style="color:#ffffff;">@HttpContext.Current.User.Identity.Name</labeL>
+                    </li>
                 </ul>
+                @using (Html.BeginForm("Logout", "Login", FormMethod.Post))
+                {
+                    if (@HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <a href="javascript:;" onclick="document.forms[0].submit();">Logout</a>
+                    }
+                }
             </div>
         </div>
     </div>
