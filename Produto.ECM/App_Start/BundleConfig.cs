@@ -15,11 +15,13 @@ namespace Produto.ECM
                 .Include("~/Scripts/respond.js")
                 .Include("~/Scripts/modernizr-*")
                 .Include("~/Scripts/site.js")
+                .Include("~/Scripts/Login/script.js")
                 );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/PagedList.css",
+                      "~/Content/Login/style.css",
                       "~/Content/Site.css"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

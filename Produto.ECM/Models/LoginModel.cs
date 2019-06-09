@@ -16,7 +16,14 @@ namespace Produto.ECM.Models
                 _request.AddQueryParameter("senha", obj.Senha);
                 var _response = new ServiceRepository().Client.Post(_request);
 
-                return JsonConvert.DeserializeObject<UsuarioViewModel>(_response.Content);
+                if (_response.IsSuccessful)
+                {
+                    return JsonConvert.DeserializeObject<UsuarioViewModel>(_response.Content);
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch
             {
