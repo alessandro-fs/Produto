@@ -1,4 +1,5 @@
 ﻿using Produto.ECM.AutoMapper;
+using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -16,5 +17,6 @@ namespace Produto.ECM
             //MAPEAR AS CLASSES
             AutoMapperConfig.RegisterMapping();
         }
+
     }
 }

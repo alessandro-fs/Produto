@@ -1,9 +1,12 @@
-﻿using Produto.ECM.Extensions;
+﻿using Facebook;
+using Newtonsoft.Json;
+using Produto.ECM.Extensions;
 using Produto.ECM.ViewModels;
 using System;
+using System.Dynamic;
 using System.Web.Mvc;
 using System.Web.Security;
-
+using System.Web.SessionState;
 namespace Produto.ECM.Controllers
 {
     public class LoginController : Controller
@@ -11,7 +14,23 @@ namespace Produto.ECM.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            ViewBag.UrlFb = GetFacebookLoginUrl();
+            if (Session["FACEBOOK_USER_TOKEN"] != null)
+            {
+                var _facebook = new FacebookClient(Session["FACEBOOK_USER_TOKEN"].ToString());
+                var _requestFB = _facebook.Get("me");
+                string _output = JsonConvert.SerializeObject(_requestFB);
+                { }
+
+                FacebookViewModel _fbVM = JsonConvert.DeserializeObject<FacebookViewModel>(_output);
+                this.AutenticaUsuario(new UsuarioViewModel() { Nome = _fbVM.name, Login = _fbVM.id });
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Login/Login
@@ -26,10 +45,7 @@ namespace Produto.ECM.Controllers
                 var _usuario = Models.LoginModel.Login(obj);
                 if (_usuario != null)
                 {
-                    Session["LOGADO"] = "S";
-                    Session["NOME"] = string.Format("{0} {1}", _usuario.Nome, _usuario.Sobrenome);
-                    Session["SESSION_ID"] = Session.SessionID;
-                    FormsAuthentication.SetAuthCookie(obj.Login, false);
+                    AutenticaUsuario(_usuario);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -49,8 +65,41 @@ namespace Produto.ECM.Controllers
         [Authorize]
         public ActionResult Logout()
         {
+            ViewData.Clear();
+            Session.Clear();
+            Session.Abandon();
             FormsAuthentication.SignOut();
-            return View("Index");
+            return RedirectToAction("Index", "Login");
+        }
+
+        public string GetFacebookLoginUrl()
+        {
+            dynamic parameters = new ExpandoObject();
+            parameters.client_id = Produto.Shared.Settings.FacebookClientId;
+            parameters.redirect_uri = Produto.Shared.Settings.FacebookRedirectUri;
+            parameters.response_type = "code";
+            parameters.display = "page";
+            //var extendedPermissions = "user_about_me,read_stream,publish_stream";
+            //parameters.scope = extendedPermissions;
+            var _fb = new FacebookClient();
+            var url = _fb.GetLoginUrl(parameters);
+            return url.ToString();
+        }
+
+        public void AutenticaUsuario(UsuarioViewModel usuario)
+        {
+            Session.Add("LOGADO", "S");
+            Session.Add("SESSION_ID", Session.SessionID);
+            Session.Add("NOME", string.Format("{0} {1}", usuario.Nome, usuario.Sobrenome));
+            ViewBag.NomeFacebook = Session["NOME"];
+            FormsAuthentication.SetAuthCookie(usuario.Login, false);
+            if (Session["FACEBOOK_USER_TOKEN"] != null)
+            {
+                //TODO: Guardar no banco
+                //VERIFICAR SE USUÁRIO JÁ EXISTE
+                //SENÃO EXISTE, INCLUIR
+                //SE EXISTE, RESGATAR DADOS
+            }
         }
     }
 }

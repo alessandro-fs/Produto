@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Facebook;
+using Newtonsoft.Json;
+using Produto.ECM.ViewModels;
+using System.Dynamic;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Produto.ECM.Controllers
 {
@@ -11,7 +12,7 @@ namespace Produto.ECM.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         [Authorize]
@@ -29,5 +30,33 @@ namespace Produto.ECM.Controllers
 
             return View();
         }
+
+        public ActionResult RetornoFb()
+        {
+            var _fb = new FacebookClient();
+            FacebookOAuthResult oauthResult;
+            _fb.TryParseOAuthCallbackUrl(Request.Url, out oauthResult);
+            if (oauthResult.IsSuccess)
+            {
+                //---
+                //PEGA O ACCESS TOKEN "PERMANENTE"
+                dynamic parameters = new ExpandoObject();
+                parameters.client_id = Produto.Shared.Settings.FacebookClientId;
+                parameters.redirect_uri = Produto.Shared.Settings.FacebookRedirectUri;
+                parameters.client_secret = Produto.Shared.Settings.FacebookClientSecret;
+                parameters.code = oauthResult.Code;
+                dynamic result = _fb.Get("oauth/access_token", parameters);
+                var accessToken = result.access_token;
+               
+                Session.Add("FACEBOOK_USER_TOKEN", accessToken);
+            }
+            else
+            {
+                // tratar
+            }
+            return RedirectToAction("Index");
+        }
+
+        
     }
 }
