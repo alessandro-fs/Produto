@@ -10,5 +10,10 @@ namespace Produto.Infra.Data.Repositories
         {
             return Db.Usuarios.Where(x => x.Login.Equals(login) && x.Senha.Equals(senha)).FirstOrDefault();
         }
+
+        public Usuario BuscarPorFacebookId(string facebookId)
+        {
+            return Db.Usuarios.Where(x => x.FacebookId.Equals(facebookId)).FirstOrDefault();
+        }
     }
 }

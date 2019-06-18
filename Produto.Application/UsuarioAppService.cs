@@ -24,5 +24,10 @@ namespace Produto.Application
             login = login.Trim().ToUpper();
             return _usuarioService.Login(login, senha);
         }
+
+        public Usuario BuscarPorFacebookId(string facebookId)
+        {
+            return _usuarioService.BuscarPorFacebookId(facebookId);
+        }
     }
 }

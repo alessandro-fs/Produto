@@ -14,22 +14,22 @@ namespace Produto.Infra.Data.EntityConfig
                 .HasMaxLength(150);
 
             Property(c => c.Sobrenome)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(150);
 
             Property(c => c.Login)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(150);
             Property(c => c.Senha)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(500);
 
             Property(c => c.Email)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(150);
 
             Property(c => c.Telefone)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(15);
 
             Property(c => c.DataCadastro)
@@ -39,6 +39,14 @@ namespace Produto.Infra.Data.EntityConfig
             Property(c => c.DataAlteracao)
                .HasColumnType("datetime2")
                .IsOptional();
+
+            Property(c => c.FacebookAccessToken)
+                .IsOptional()
+                .HasMaxLength(250);
+
+            Property(c => c.FacebookId)
+               .IsOptional()
+               .HasMaxLength(50);
 
         }
     }

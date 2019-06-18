@@ -60,5 +60,9 @@ namespace Produto.ECM.ViewModels
 
         [ScaffoldColumn(false)]
         public bool Excluido { get; set; }
+
+        public string FacebookAccessToken { get; set; }
+        public string FacebookId { get; set; }
+
     }
 }

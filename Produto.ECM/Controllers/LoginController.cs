@@ -15,9 +15,9 @@ namespace Produto.ECM.Controllers
         public ActionResult Index()
         {
             ViewBag.UrlFb = GetFacebookLoginUrl();
-            if (Session["FACEBOOK_USER_TOKEN"] != null)
+            if (Session["FACEBOOK_ACCESS_TOKEN"] != null)
             {
-                var _facebook = new FacebookClient(Session["FACEBOOK_USER_TOKEN"].ToString());
+                var _facebook = new FacebookClient(Session["FACEBOOK_ACCESS_TOKEN"].ToString());
                 var _requestFB = _facebook.Get("me");
                 string _output = JsonConvert.SerializeObject(_requestFB);
                 { }
@@ -25,7 +25,42 @@ namespace Produto.ECM.Controllers
                 FacebookViewModel _fbVM = JsonConvert.DeserializeObject<FacebookViewModel>(_output);
                 this.AutenticaUsuario(new UsuarioViewModel() { Nome = _fbVM.name, Login = _fbVM.id });
 
-                return RedirectToAction("Index", "Home");
+                //---
+                //VALIDAR SE FACEBOOKID EXISTE
+                var _usuario = Models.UsuarioModel.GetByFacebookId(_fbVM.id);
+                if (_usuario != null)
+                {
+                    if (_usuario.UsuarioId > 0)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        //---
+                        //CADASTRAR USUÁRIO
+                        if (Models.UsuarioModel.Create(new UsuarioViewModel()
+                        {
+                            Nome = _fbVM.name,
+                            FacebookAccessToken = Session["FACEBOOK_ACCESS_TOKEN"].ToString(),
+                            FacebookId = _fbVM.id
+                        }))
+                        {
+                            //---
+                            //REDIRECIONAR PARA TELA DE USUÁRIO PARA COMPLETAR CADASTRO
+                            return RedirectToAction("Edit", "Usuarios", new { id = Models.UsuarioModel.GetByFacebookId(_fbVM.id).UsuarioId});
+                        }
+                        else
+                        {
+                            this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                            return View("Index");
+                        }
+                    }
+                }
+                else
+                {
+                    this.AddNotification(@Resources.Resource1.FalhaOperacao, NotificationType.ERROR);
+                    return View("Index");
+                }
             }
             else
             {
@@ -93,7 +128,7 @@ namespace Produto.ECM.Controllers
             Session.Add("NOME", string.Format("{0} {1}", usuario.Nome, usuario.Sobrenome));
             ViewBag.NomeFacebook = Session["NOME"];
             FormsAuthentication.SetAuthCookie(usuario.Login, false);
-            if (Session["FACEBOOK_USER_TOKEN"] != null)
+            if (Session["FACEBOOK_ACCESS_TOKEN"] != null)
             {
                 //TODO: Guardar no banco
                 //VERIFICAR SE USUÁRIO JÁ EXISTE
@@ -101,5 +136,6 @@ namespace Produto.ECM.Controllers
                 //SE EXISTE, RESGATAR DADOS
             }
         }
+        
     }
 }

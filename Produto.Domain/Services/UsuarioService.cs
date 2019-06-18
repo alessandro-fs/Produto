@@ -15,6 +15,11 @@ namespace Produto.Domain.Services
 
         }
 
+        public Usuario BuscarPorFacebookId(string facebookId)
+        {
+            return _usuarioRepository.BuscarPorFacebookId(facebookId);
+        }
+
         public Usuario Login(string login, string senha)
         {
             return _usuarioRepository.Login(login, senha);

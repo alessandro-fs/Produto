@@ -48,7 +48,7 @@ namespace Produto.ECM.Controllers
                 dynamic result = _fb.Get("oauth/access_token", parameters);
                 var accessToken = result.access_token;
                
-                Session.Add("FACEBOOK_USER_TOKEN", accessToken);
+                Session.Add("FACEBOOK_ACCESS_TOKEN", accessToken);
             }
             else
             {

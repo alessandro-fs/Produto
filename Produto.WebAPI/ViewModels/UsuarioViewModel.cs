@@ -16,5 +16,7 @@ namespace Produto.WebAPI.ViewModels
         public DateTime? DataAlteracao { get; set; }
         public string UsuarioAlteracao { get; set; }
         public bool Ativo { get; set; }
+        public string FacebookAccessToken { get; set; }
+        public string FacebookId { get; set; }
     }
 }

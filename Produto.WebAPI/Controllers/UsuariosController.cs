@@ -141,5 +141,30 @@ namespace Produto.WebAPI.Controllers
                 return BadRequest();
             }
         }
+
+        #region FACEBOOK METHODS
+        [DeflateCompression]
+        [ResponseType(typeof(UsuarioViewModel))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetByFacebookId(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                var _usuario = await Task.FromResult(_usuarioApp.BuscarPorFacebookId(id));
+                if (_usuario == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(Mapper.Map<Usuario, UsuarioViewModel>(_usuario));
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
     }
 }

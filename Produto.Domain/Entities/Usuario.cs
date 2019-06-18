@@ -17,6 +17,9 @@ namespace Produto.Domain.Entities
         public string UsuarioAlteracao { get; set; }
         public bool Ativo { get; set; }
 
+        public string FacebookId { get; set; }
+        public string FacebookAccessToken { get; set; }
+
         public bool UsuarioMaster(Usuario usuario)
         {
             return usuario.Login == "MASTER" ? true : false;
