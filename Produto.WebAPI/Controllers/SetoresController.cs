@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
+using Produto.WebAPI.Filters;
 using Produto.WebAPI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Produto.WebAPI.Controllers
             _setorApp = setorApp;
         }
 
+        [DeflateCompression]
         [ResponseType(typeof(IEnumerable<SetorViewModel>))]
         public async Task<IHttpActionResult> GetAll()
         {
