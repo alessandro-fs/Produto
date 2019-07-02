@@ -17,6 +17,7 @@ namespace Produto.ECM.Controllers
             _celulaApp = celulaApp;
         }
         // GET: Setores
+        [Authorize]
         public ActionResult Index()
         {
             var setorViewModel = Mapper.Map<IEnumerable<Setor>, IEnumerable<SetorViewModel>>(_setorApp.GetAll());
@@ -24,6 +25,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Setores/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var _setor = _setorApp.GetById(id);
@@ -32,6 +34,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Setores/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CelulaId = new SelectList(_celulaApp.GetAll(), "CelulaId", "Nome");
@@ -39,6 +42,7 @@ namespace Produto.ECM.Controllers
         }
 
         // POST: Setores/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SetorViewModel setor)
@@ -55,6 +59,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Setores/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var _setor = _setorApp.GetById(id);
@@ -66,6 +71,7 @@ namespace Produto.ECM.Controllers
         }
 
         // POST: Setores/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SetorViewModel setor)
@@ -80,6 +86,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Setores/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var _setor = _setorApp.GetById(id);
@@ -89,6 +96,7 @@ namespace Produto.ECM.Controllers
         }
 
         // POST: Setores/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

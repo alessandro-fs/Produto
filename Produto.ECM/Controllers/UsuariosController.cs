@@ -11,14 +11,8 @@ namespace Produto.ECM.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly IUsuarioAppService _usuarioApp;
-
-        public UsuariosController(IUsuarioAppService usuarioApp)
-        {
-            _usuarioApp = usuarioApp;
-        }
-
         // GET: Usuarios
+        [Authorize]
         public ActionResult Index(string ordenacao, int? pagina)
         {
             try
@@ -65,6 +59,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Usuarios/Details/5
+        [Authorize]
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -72,12 +67,14 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Usuarios/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Usuarios/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UsuarioViewModel usuario)
@@ -104,6 +101,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Usuarios/Edit/5
+        [Authorize]
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -114,6 +112,7 @@ namespace Produto.ECM.Controllers
         }
 
         // POST: Usuarios/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UsuarioViewModel usuario)
@@ -139,6 +138,7 @@ namespace Produto.ECM.Controllers
         }
 
         // GET: Usuarios/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             if (ModelState.IsValid)
@@ -152,6 +152,7 @@ namespace Produto.ECM.Controllers
         }
 
         // POST: Usuarios/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

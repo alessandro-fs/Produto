@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Produto.Application.Interface;
 using Produto.Domain.Entities;
+using Produto.WebAPI.Filters;
 using Produto.WebAPI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Produto.WebAPI.Controllers
             _usuarioApp = usuarioApp;
         }
 
+        [DeflateCompression]
         [ResponseType(typeof(IEnumerable<UsuarioViewModel>))]
         public async Task<IHttpActionResult> GetAll()
         {
@@ -63,6 +65,7 @@ namespace Produto.WebAPI.Controllers
                 }
                 else
                 {
+                    _usuarioDomain.Senha = Shared.Senha.Encriptar(_usuarioDomain.Senha);
                     _usuarioApp.Add(_usuarioDomain);
                     return Ok();
                 }
@@ -85,6 +88,7 @@ namespace Produto.WebAPI.Controllers
                 }
                 else
                 {
+                    _usuarioDomain.Senha = Shared.Senha.Encriptar(_usuarioDomain.Senha);
                     _usuarioApp.Update(_usuarioDomain);
                     return Ok();
                 }
@@ -137,5 +141,30 @@ namespace Produto.WebAPI.Controllers
                 return BadRequest();
             }
         }
+
+        #region FACEBOOK METHODS
+        [DeflateCompression]
+        [ResponseType(typeof(UsuarioViewModel))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetByFacebookId(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                var _usuario = await Task.FromResult(_usuarioApp.BuscarPorFacebookId(id));
+                if (_usuario == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(Mapper.Map<Usuario, UsuarioViewModel>(_usuario));
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
     }
 }

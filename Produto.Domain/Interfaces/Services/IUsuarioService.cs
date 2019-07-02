@@ -4,5 +4,8 @@ namespace Produto.Domain.Interfaces.Services
 {
     public interface IUsuarioService : IServiceBase<Usuario>
     {
+        Usuario Login(string login, string senha);
+
+        Usuario BuscarPorFacebookId(string facebookId);
     }
 }

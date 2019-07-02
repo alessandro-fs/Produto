@@ -18,5 +18,16 @@ namespace Produto.Application
         {
             _usuarioService = usuarioService;
         }
+
+        public Usuario Login(string login, string senha)
+        {
+            login = login.Trim().ToUpper();
+            return _usuarioService.Login(login, senha);
+        }
+
+        public Usuario BuscarPorFacebookId(string facebookId)
+        {
+            return _usuarioService.BuscarPorFacebookId(facebookId);
+        }
     }
 }

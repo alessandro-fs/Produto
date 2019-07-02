@@ -12,6 +12,12 @@
       <mvcSiteMapNode title="$resources:Resource1,Alterar" controller="Celulas" action="Edit" preservedRouteParameters="id" />
       <mvcSiteMapNode title="$resources:Resource1,Detalhes" controller="Celulas" action="Details" preservedRouteParameters="id"/>
     </mvcSiteMapNode>
+  
+  <mvcSiteMapNode title="$resources:Resource1,Usuario" controller="Usuarios" action="Index">
+      <mvcSiteMapNode title="$resources:Resource1,NovoItem" controller="Usuarios" action="Create" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="$resources:Resource1,Alterar" controller="Usuarios" action="Edit" preservedRouteParameters="id" />
+      <mvcSiteMapNode title="$resources:Resource1,Detalhes" controller="Usuarios" action="Details" preservedRouteParameters="id"/>
+    </mvcSiteMapNode>
   </mvcSiteMapNode>
 
 </mvcSiteMap>

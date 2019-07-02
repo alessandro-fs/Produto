@@ -2,6 +2,7 @@
 using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
 using RestSharp;
+using System;
 using System.Collections.Generic;
 
 namespace Produto.ECM.Models
@@ -137,5 +138,34 @@ namespace Produto.ECM.Models
                 return false;
             }
         }
+
+        #region FACEBOOK METHODS
+        public static UsuarioViewModel GetByFacebookId(string facebookId)
+        {
+            try
+            {
+                //var _request = new RestRequest("api/usuarios/GetByFacebookId/" + facebookId, Method.GET);
+
+                var _request = new RestRequest("api/usuarios/GetByFacebookId/", Method.GET);
+                _request.AddParameter("id", facebookId);
+
+                var _response = new ServiceRepository().Client.Execute<List<UsuarioViewModel>>(_request);
+
+                if (_response.IsSuccessful)
+                {
+                    return JsonConvert.DeserializeObject<UsuarioViewModel>(_response.Content);
+                }
+                else
+                {
+                    return new UsuarioViewModel();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion
     }
 }
