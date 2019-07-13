@@ -24,6 +24,11 @@ namespace Produto.Domain.Services
         {
             return _usuarioRepository.Login(login, senha);
         }
+
+        public bool LoginExiste(string login)
+        {
+            return _usuarioRepository.LoginExiste(login);
+        }
         //---
         //ORQUESTRA, EXECUTA SERVIÇOS DE ALGUM LUGAR PARA ALGUM LUGAR
     }

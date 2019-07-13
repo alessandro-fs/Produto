@@ -20,6 +20,7 @@ namespace Produto.WebAPI.Controllers
 
         [DeflateCompression]
         [ResponseType(typeof(IEnumerable<CelulaViewModel>))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetAll()
         {
             var celulaViewModel = await Task.FromResult(Mapper.Map<IEnumerable<Celula>, IEnumerable<CelulaViewModel>>(_celulaApp.GetAllAsNoTracking()));

@@ -6,7 +6,6 @@ using System;
 using System.Dynamic;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.SessionState;
 namespace Produto.ECM.Controllers
 {
     public class LoginController : Controller
@@ -125,8 +124,12 @@ namespace Produto.ECM.Controllers
         {
             Session.Add("LOGADO", "S");
             Session.Add("SESSION_ID", Session.SessionID);
-            Session.Add("NOME", string.Format("{0} {1}", usuario.Nome, usuario.Sobrenome));
-            ViewBag.NomeFacebook = Session["NOME"];
+            Session.Add("USUARIO_NOME", string.Format("{0} {1}", usuario.Nome, usuario.Sobrenome));
+            Session.Add("USUARIO_LOGIN", usuario.Login);
+            Session.Add("USUARIO_SENHA", usuario.Senha);
+            Session.Add("WEB_API_TOKEN", UtilExtensions.GetToken(usuario.Login, usuario.Senha));
+
+            ViewBag.NomeFacebook = Session["USUARIO_NOME"];
             FormsAuthentication.SetAuthCookie(usuario.Login, false);
             if (Session["FACEBOOK_ACCESS_TOKEN"] != null)
             {

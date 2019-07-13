@@ -14,7 +14,7 @@ namespace Produto.ECM.Repository
         public RestClient Client { get; set; }
         public ServiceRepository()
         {
-            Client = new RestClient(ConfigurationManager.AppSettings["URL_WEB_API"].ToString());
+            Client = new RestClient(ConfigurationManager.AppSettings["WEB_API_URL"].ToString());
         }
     }
 }

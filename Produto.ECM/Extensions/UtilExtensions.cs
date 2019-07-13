@@ -34,5 +34,27 @@ namespace Produto.ECM.Extensions
             else
                 return 15;//VALOR DEFAULT
         }
+
+        public static string GetToken(string login, string senha, string token = "")
+        {
+            //---
+            //VALIDA SE TOKEN AINDA É VALIDO
+            var _reponse = Models.LoginModel.ValidateWebApiToken(token, login);
+            if (token.Length > 0 && _reponse.ToUpper().Equals("TRUE"))
+            {
+                return token;
+            }
+            else
+            { 
+                //---
+                //CRIA NOVO TOKEN
+                var _token = Models.LoginModel.GenerateWebApiToken(new ViewModels.LoginViewModel()
+                {
+                    Login = login,
+                    Senha = senha
+                });
+                return _token;
+            }
+        }
     }
 }
