@@ -7,7 +7,7 @@ https://trello.com/b/CrJR5ww4/starter-kit
 <u>
 <b>Tecnologias aplicadas</b>
 <li>Arquitetura DDD (Domain Driven Design)</li>
-<li>BackEnd em Asp.Net MVC 5 com Razor</li>
+<li>BackEnd em Asp.Net MVC 5</li>
 <li>Bundle/Minification</li>
   <li>Bootstrap</li>
 <li>Modernizr</li>
@@ -19,6 +19,5 @@ https://trello.com/b/CrJR5ww4/starter-kit
 <li>Entity Framework Code First</li>
 <li>Auto Mapper</li>
 <li>Ninject</li>
-<li>Setup de instalação</li>
 <li>CRUD genérico</li>
 </ul>
