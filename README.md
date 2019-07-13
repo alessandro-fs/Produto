@@ -6,9 +6,15 @@ https://trello.com/b/CrJR5ww4/starter-kit
 
 <u>
 <b>Tecnologias aplicadas</b>
-<li>Arquitetura DDD (DOMAIN DRIVEN DESIGN)</li>
-<li>BackEnd em Asp.Net MVC 5 com Razor e Data Annotation</li>
+<li>Arquitetura DDD (Domain Driven Design)</li>
+<li>BackEnd em Asp.Net MVC 5 com Razor</li>
+<li>Bundle/Minification</li>
+  <li>Bootstrap</li>
+<li>Modernizr</li>
+<li>OWIN</li>
+<li>Razor com Data Annotation</li>
 <li>Tela de Login em Asp.Net MVC 5, Xamarin Forms, IONIC, Windows Form</li>
+
 <li>Web API com JWT</li>
 <li>Entity Framework Code First</li>
 <li>Auto Mapper</li>
