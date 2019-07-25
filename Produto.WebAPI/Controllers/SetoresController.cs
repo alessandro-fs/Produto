@@ -21,6 +21,7 @@ namespace Produto.WebAPI.Controllers
 
         [DeflateCompression]
         [ResponseType(typeof(IEnumerable<SetorViewModel>))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetAll()
         {
             var _response = await Task.FromResult(Mapper.Map<IEnumerable<Setor>, IEnumerable<SetorViewModel>>(_setorApp.GetAllAsNoTracking()));
@@ -35,6 +36,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(SetorViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetById(int id)
         {
             if (ModelState.IsValid)
@@ -55,6 +57,7 @@ namespace Produto.WebAPI.Controllers
             }
         }
 
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Create(SetorViewModel request)
         {
             if (ModelState.IsValid)
@@ -77,6 +80,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(SetorViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Edit(SetorViewModel request)
         {
             if (ModelState.IsValid)
@@ -99,6 +103,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(SetorViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Delete(int id)
         {
             if (ModelState.IsValid)
@@ -120,6 +125,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(SetorViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)

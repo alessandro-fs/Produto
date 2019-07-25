@@ -68,7 +68,7 @@ namespace Produto.WebAPI.Filters
         private bool ValidateLogin(string login)
         {
             //---
-            //VALIDAR SE O USUÁRIO EXISTE NA BASE DE DADOS
+            //TODO: AVALIAR A NECESSIDADE DE VALIDAR SE O USUÁRIO EXISTE NA BASE DE DADOS, DADO QUE O TOKEN FOI GERADO APÓS A AUTENTICAÇÃO, A RESPOSTA É SIM. NESTE CASO SERIA UM DOUBLECHECK
             return true;
         }
 

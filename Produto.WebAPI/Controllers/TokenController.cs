@@ -1,4 +1,5 @@
-﻿using Produto.WebAPI.Helper;
+﻿using Produto.Application.Interface;
+using Produto.WebAPI.Helper;
 using System.Net;
 using System.Security.Claims;
 using System.Web.Http;
@@ -7,6 +8,11 @@ namespace Produto.WebAPI.Controllers
 {
     public class TokenController : ApiController
     {
+        private readonly IUsuarioAppService _usuarioApp;
+        public TokenController(IUsuarioAppService usuarioApp)
+        {
+            _usuarioApp = usuarioApp;
+        }
         [AllowAnonymous]
         [HttpPost]
         public string GenerateToken(string login, string senha)
@@ -22,8 +28,8 @@ namespace Produto.WebAPI.Controllers
         [NonAction]
         public bool CheckUser(string login, string senha)
         {
-            //TODO: VALIDAR ACESSO NO BANCO DE DADOS
-            return (login.Equals("alesfsi") && senha.Equals(Shared.Senha.Encriptar("123"))) ? true : false;
+            var _usuario = _usuarioApp.Login(login, senha);
+            return (_usuario.Login.Equals(login) && senha.Equals(senha)) ? true : false;
         }
 
         [HttpGet]

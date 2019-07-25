@@ -35,6 +35,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetById(int id)
         {
             if (ModelState.IsValid)
@@ -55,6 +56,7 @@ namespace Produto.WebAPI.Controllers
             }
         }
 
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Create(CelulaViewModel celula)
         {
             if (ModelState.IsValid)
@@ -77,6 +79,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Edit(CelulaViewModel celula)
         {
             if (ModelState.IsValid)
@@ -99,6 +102,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -121,6 +125,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(CelulaViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Delete(int id)
         {
             if (ModelState.IsValid)
