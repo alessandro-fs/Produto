@@ -9,11 +9,13 @@ namespace Produto.ECM.Models
 {
     public class UsuarioModel
     {
-        public static IEnumerable<UsuarioViewModel> GetAll()
+        public static IEnumerable<UsuarioViewModel> GetAll(string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/GetAll", Method.GET);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
                 var _response = new ServiceRepository().Client.Execute<List<UsuarioViewModel>>(_request);
 
                 if (_response.IsSuccessful)
@@ -31,11 +33,14 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static UsuarioViewModel GetById(int id)
+        public static UsuarioViewModel GetById(int id, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/GetById/" + id.ToString(), Method.GET);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 _request.AddObject(id);
 
                 var _response = new ServiceRepository().Client.Execute<List<UsuarioViewModel>>(_request);
@@ -55,12 +60,16 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool Create(UsuarioViewModel usuario)
+        public static bool Create(UsuarioViewModel usuario, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/Create", Method.POST);
                 _request.AddObject(usuario);
+
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Post(_request);
 
                 return _response.IsSuccessful;
@@ -71,12 +80,16 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static UsuarioViewModel Edit(int id)
+        public static UsuarioViewModel Edit(int id, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/GetById/" + id.ToString(), Method.GET);
                 _request.AddObject(id);
+
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Execute<List<UsuarioViewModel>>(_request);
 
                 if (_response.IsSuccessful)
@@ -90,12 +103,16 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool Edit(UsuarioViewModel usuario)
+        public static bool Edit(UsuarioViewModel usuario, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/Edit", Method.POST);
                 _request.AddObject(usuario);
+
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Post(_request);
                 return _response.IsSuccessful;
             }
@@ -105,12 +122,16 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static UsuarioViewModel Delete(int id)
+        public static UsuarioViewModel Delete(int id, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/GetById/" + id.ToString(), Method.GET);
                 _request.AddObject(id);
+
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Execute<List<UsuarioViewModel>>(_request);
 
                 if (_response.IsSuccessful)
@@ -124,12 +145,16 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool DeleteConfirmed(int id)
+        public static bool DeleteConfirmed(int id, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/usuarios/DeleteConfirmed/" + id.ToString(), Method.DELETE);
                 _request.AddObject(id);
+
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Delete(_request);
                 return _response.IsSuccessful;
             }

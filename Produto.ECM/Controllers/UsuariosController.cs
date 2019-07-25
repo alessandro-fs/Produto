@@ -17,8 +17,7 @@ namespace Produto.ECM.Controllers
         {
             try
             {
-                IEnumerable<UsuarioViewModel> _usuarios = Models.UsuarioModel.GetAll();
-
+                IEnumerable<UsuarioViewModel> _usuarios = Models.UsuarioModel.GetAll(UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString()));
                 //ORDENAÇÃO DOS DADOS
                 ordenacao = (String.IsNullOrEmpty(ordenacao) ? "Nome_Asc" : ordenacao);
                 switch (ordenacao)
@@ -63,7 +62,7 @@ namespace Produto.ECM.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(Models.UsuarioModel.GetById(id));
+            return View(Models.UsuarioModel.GetById(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
         }
 
         // GET: Usuarios/Create
@@ -83,7 +82,7 @@ namespace Produto.ECM.Controllers
 
             try
             {
-                if (Models.UsuarioModel.Create(usuario))
+                if (Models.UsuarioModel.Create(usuario, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroIncluido, NotificationType.SUCCESS);
                 }
@@ -106,7 +105,7 @@ namespace Produto.ECM.Controllers
         public ActionResult Edit(int id)
         {
             if (ModelState.IsValid)
-                return View(Models.UsuarioModel.Edit(id));
+                return View(Models.UsuarioModel.Edit(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
             else
                 return View(new UsuarioViewModel());
         }
@@ -120,7 +119,7 @@ namespace Produto.ECM.Controllers
             if (!ModelState.IsValid) return View();
             try
             {
-                if (Models.UsuarioModel.Edit(usuario))
+                if (Models.UsuarioModel.Edit(usuario, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroAlterado, NotificationType.SUCCESS);
                 }
@@ -143,7 +142,7 @@ namespace Produto.ECM.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(Models.UsuarioModel.Delete(id));
+                return View(Models.UsuarioModel.Delete(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
             }
             else
             {
@@ -160,7 +159,7 @@ namespace Produto.ECM.Controllers
             if (!ModelState.IsValid) return View();
             try
             {
-                if (Models.UsuarioModel.DeleteConfirmed(id))
+                if (Models.UsuarioModel.DeleteConfirmed(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroExcluido, NotificationType.SUCCESS);
 
