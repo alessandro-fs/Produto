@@ -29,5 +29,10 @@ namespace Produto.Application
         {
             return _usuarioService.BuscarPorFacebookId(facebookId);
         }
+
+        public bool LoginExiste(string login)
+        {
+            return _usuarioService.LoginExiste(login);
+        }
     }
 }

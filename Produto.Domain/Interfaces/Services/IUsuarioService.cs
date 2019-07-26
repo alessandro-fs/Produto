@@ -7,5 +7,7 @@ namespace Produto.Domain.Interfaces.Services
         Usuario Login(string login, string senha);
 
         Usuario BuscarPorFacebookId(string facebookId);
+
+        bool LoginExiste(string login);
     }
 }

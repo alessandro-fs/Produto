@@ -31,7 +31,7 @@
                     <li>@Html.ActionLink("Setores", "Index", "Setores")</li>
                     <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
                     <li>
-                        <labeL style="color:#ffffff;">@if (Session["NOME"] != null) { @Session["NOME"].ToString(); }&nbsp;</labeL>
+                        <labeL style="color:#ffffff;">@if (Session["USUARIO_NOME"] != null) { @Session["USUARIO_NOME"].ToString(); }&nbsp;</labeL>
                         @*@HttpContext.Current.User.Identity.Name*@
                     </li>
                 </ul>

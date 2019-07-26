@@ -15,5 +15,10 @@ namespace Produto.Infra.Data.Repositories
         {
             return Db.Usuarios.Where(x => x.FacebookId.Equals(facebookId)).FirstOrDefault();
         }
+
+        public bool LoginExiste(string login)
+        {
+            return Db.Usuarios.Where(x => x.Login.ToUpper().Equals(login.ToUpper())).FirstOrDefault().Login.Length > 0 ? true : false;
+        }
     }
 }

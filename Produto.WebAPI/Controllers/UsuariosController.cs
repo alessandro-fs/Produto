@@ -20,6 +20,7 @@ namespace Produto.WebAPI.Controllers
 
         [DeflateCompression]
         [ResponseType(typeof(IEnumerable<UsuarioViewModel>))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetAll()
         {
             var usuarioViewModel = await Task.FromResult(Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioViewModel>>(_usuarioApp.GetAllAsNoTracking()));
@@ -34,6 +35,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(UsuarioViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> GetById(int id)
         {
             if (ModelState.IsValid)
@@ -54,6 +56,7 @@ namespace Produto.WebAPI.Controllers
             }
         }
 
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Create(UsuarioViewModel usuario)
         {
             if (ModelState.IsValid)
@@ -77,6 +80,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(UsuarioViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Edit(UsuarioViewModel usuario)
         {
             if (ModelState.IsValid)
@@ -100,6 +104,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(UsuarioViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -122,6 +127,7 @@ namespace Produto.WebAPI.Controllers
         }
 
         [ResponseType(typeof(UsuarioViewModel))]
+        [JwtAuthentication]
         public async Task<IHttpActionResult> Delete(int id)
         {
             if (ModelState.IsValid)

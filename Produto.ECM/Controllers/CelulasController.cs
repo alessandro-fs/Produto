@@ -1,5 +1,4 @@
 ﻿using PagedList;
-using Produto.Application.Interface;
 using Produto.ECM.Extensions;
 using Produto.ECM.ViewModels;
 using System;
@@ -17,7 +16,7 @@ namespace Produto.ECM.Controllers
         {
             try
             {
-                IEnumerable<CelulaViewModel> _celulas = Models.CelulaModel.GetAll();
+                IEnumerable<CelulaViewModel> _celulas = Models.CelulaModel.GetAll(UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString()));
 
                 //ORDENAÇÃO DOS DADOS
                 ordenacao = (String.IsNullOrEmpty(ordenacao) ? "Nome_Asc" : ordenacao);

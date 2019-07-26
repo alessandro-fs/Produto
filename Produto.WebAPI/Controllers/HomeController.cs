@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Produto.WebAPI.Filters;
 using System.Web.Mvc;
 
 namespace Produto.WebAPI.Controllers
 {
     public class HomeController : Controller
     {
+        [JwtAuthentication]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

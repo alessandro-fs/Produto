@@ -8,11 +8,13 @@ namespace Produto.ECM.Models
 {
     public class CelulaModel
     {
-        public static IEnumerable<CelulaViewModel> GetAll()
+        public static IEnumerable<CelulaViewModel> GetAll(string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/celulas/GetAll", Method.GET);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
                 var _response = new ServiceRepository().Client.Execute<List<CelulaViewModel>>(_request);
 
                 if (_response.IsSuccessful)
