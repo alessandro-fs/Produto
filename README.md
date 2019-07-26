@@ -15,7 +15,7 @@ https://trello.com/b/CrJR5ww4/starter-kit
 <li>Razor com Data Annotation</li>
 <li>Tela de Login em Asp.Net MVC 5, Xamarin Forms, IONIC, Windows Form</li>
 
-<li>Web API com JWT</li>
+<li>Web API com JWT e compressão de dados</li>
 <li>Entity Framework Code First</li>
 <li>Auto Mapper</li>
 <li>Ninject</li>
