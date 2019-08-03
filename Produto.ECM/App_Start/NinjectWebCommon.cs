@@ -2,13 +2,7 @@
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
-using Produto.Application;
-using Produto.Application.Interface;
-using Produto.Domain.Interfaces.Repositories;
-using Produto.Domain.Interfaces.Services;
-using Produto.Domain.Services;
 using Produto.ECM.App_Start;
-using Produto.Infra.Data.Repositories;
 using System;
 using System.Web;
 
@@ -44,21 +38,12 @@ namespace Produto.ECM.App_Start
             }
             private static void RegisterServices(IKernel kernel)
             {
-                kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
-                kernel.Bind<ICelulaAppService>().To<CelulaAppService>();
-                kernel.Bind<ISetorAppService>().To<SetorAppService>();
-                kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
+                //Descontinuado, agora as chamadas são via API
+                //kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
+                //kernel.Bind<ICelulaService>().To<CelulaService>();
+                //kernel.Bind<ISetorService>().To<SetorService>();
+                //kernel.Bind<IUsuarioService>().To<UsuarioService>();
 
-                kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
-                kernel.Bind<ICelulaService>().To<CelulaService>();
-                kernel.Bind<ISetorService>().To<SetorService>();
-                kernel.Bind<IUsuarioService>().To<UsuarioService>();
-
-                kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-                kernel.Bind<ICelulaRepository>().To<CelulaRepository>();
-                kernel.Bind<ISetorRepository>().To<SetorRepository>();
-                kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
-                     
         }
     }
 }

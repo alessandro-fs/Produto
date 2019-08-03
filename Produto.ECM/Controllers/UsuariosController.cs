@@ -1,5 +1,5 @@
 ﻿using PagedList;
-using Produto.Application.Interface;
+//using Produto.Application.Interface;
 using Produto.ECM.Extensions;
 using Produto.ECM.ViewModels;
 using System;
