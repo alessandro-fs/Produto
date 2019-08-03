@@ -32,7 +32,7 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static CelulaViewModel GetById(int id)
+        public static CelulaViewModel GetById(int id, string token = "")
         {
             try
             {
@@ -56,11 +56,14 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool Create(CelulaViewModel celula)
+        public static bool Create(CelulaViewModel celula, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/celulas/Create", Method.POST);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 _request.AddObject(celula);
                 var _response = new ServiceRepository().Client.Post(_request);
 
@@ -72,7 +75,7 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static CelulaViewModel Edit(int id)
+        public static CelulaViewModel Edit(int id, string token = "")
         {
             try
             {
@@ -91,7 +94,7 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool Edit(CelulaViewModel celula)
+        public static bool Edit(CelulaViewModel celula, string token = "")
         {
             try
             {
@@ -106,7 +109,7 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static CelulaViewModel Delete(int id)
+        public static CelulaViewModel Delete(int id, string token = "")
         {
             try
             {
@@ -125,7 +128,7 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool DeleteConfirmed(int id)
+        public static bool DeleteConfirmed(int id, string token = "")
         {
             try
             {

@@ -62,7 +62,7 @@ namespace Produto.ECM.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(Models.CelulaModel.GetById(id));
+            return View(Models.CelulaModel.GetById(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
         }
 
         [Authorize]// GET: Celulas/Create
@@ -81,7 +81,7 @@ namespace Produto.ECM.Controllers
 
             try
             {
-                if (Models.CelulaModel.Create(celula))
+                if (Models.CelulaModel.Create(celula, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroIncluido, NotificationType.SUCCESS);
                 }
@@ -104,7 +104,7 @@ namespace Produto.ECM.Controllers
         public ActionResult Edit(int id)
         {
             if (ModelState.IsValid)
-                return View(Models.CelulaModel.Edit(id));
+                return View(Models.CelulaModel.Edit(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
             else
                 return View(new CelulaViewModel());
         }
@@ -118,7 +118,7 @@ namespace Produto.ECM.Controllers
             if (!ModelState.IsValid) return View();
             try
             {
-                if (Models.CelulaModel.Edit(celula))
+                if (Models.CelulaModel.Edit(celula, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroAlterado, NotificationType.SUCCESS);
                 }
@@ -141,7 +141,7 @@ namespace Produto.ECM.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(Models.CelulaModel.Delete(id));
+                return View(Models.CelulaModel.Delete(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())));
             }
             else
             {
@@ -158,7 +158,7 @@ namespace Produto.ECM.Controllers
             if (!ModelState.IsValid) return View();
             try
             {
-                if (Models.CelulaModel.DeleteConfirmed(id))
+                if (Models.CelulaModel.DeleteConfirmed(id, UtilExtensions.GetToken(Session["USUARIO_LOGIN"].ToString(), Session["USUARIO_SENHA"].ToString(), Session["WEB_API_TOKEN"].ToString())))
                 {
                     this.AddNotification(@Resources.Resource1.RegistroExcluido, NotificationType.SUCCESS);
 

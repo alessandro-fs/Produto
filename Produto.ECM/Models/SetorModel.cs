@@ -8,11 +8,14 @@ namespace Produto.ECM.Models
 {
     public class SetorModel
     {
-        public static IEnumerable<SetorViewModel> GetAll()
+        public static IEnumerable<SetorViewModel> GetAll(string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/setores/GetAll", Method.GET);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 var _response = new ServiceRepository().Client.Execute<List<SetorViewModel>>(_request);
 
                 if (_response.IsSuccessful)
@@ -54,11 +57,14 @@ namespace Produto.ECM.Models
             }
         }
 
-        public static bool Create(SetorViewModel obj)
+        public static bool Create(SetorViewModel obj, string token = "")
         {
             try
             {
                 var _request = new RestRequest("api/setores/Create", Method.POST);
+                if (token.Length > 0)
+                    _request.AddHeader("Authorization", "Bearer " + token);
+
                 _request.AddObject(obj);
                 var _response = new ServiceRepository().Client.Post(_request);
 

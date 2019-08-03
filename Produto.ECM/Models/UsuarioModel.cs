@@ -2,7 +2,6 @@
 using Produto.ECM.Repository;
 using Produto.ECM.ViewModels;
 using RestSharp;
-using System;
 using System.Collections.Generic;
 
 namespace Produto.ECM.Models
