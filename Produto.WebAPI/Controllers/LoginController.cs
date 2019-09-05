@@ -19,7 +19,7 @@ namespace Produto.WebAPI.Controllers
 
         [DeflateCompression]
         [ResponseType(typeof(UsuarioViewModel))]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> Auth(string login, string senha)
         {
             if (ModelState.IsValid)

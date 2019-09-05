@@ -11,10 +11,10 @@ namespace Produto.ECM.Models
         {
             try
             {
-                var _request = new RestRequest("api/login/auth", Method.POST);
+                var _request = new RestRequest("api/login/auth", Method.GET);
                 _request.AddQueryParameter("login", obj.Login);
                 _request.AddQueryParameter("senha", obj.Senha);
-                var _response = new ServiceRepository().Client.Post(_request);
+                var _response = new ServiceRepository().Client.Get(_request);
 
                 if (_response.IsSuccessful)
                 {
